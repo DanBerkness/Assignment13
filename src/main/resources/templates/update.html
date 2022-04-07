@@ -5,18 +5,22 @@
 <title th:inline="text">[[${accounts.accountName}]]</title>
 </head>
 <body>
-	<h1>hi</h1>
+	<h1 th:inline="text">[[${accounts.accountName}]]</h1>
 	<div>
-		<form action="" method="post">
+		<form th:action="@{/users/{userId}/accounts/{accountId}(userId=${user.userId}, accountId=${accounts.accountId})}" 
+			  method="post">
 			<div>
-					Account Name:  <input type="text" th:field="${accounts.accountName}" />
+				Account Name:  <input type="text" th:field="${accounts.accountName}"/>
+			</div>
+			<div>
+				<input type="hidden" th:field="${accounts.users}"/>
 			</div>
 			<div>
 				<input type="submit" value="Save Account"/>
 			</div>
 		</form>
 		<hr>
-		<a href="">back</a>
+		<a th:href="@{/users/{userId}/accounts(userId=${user.userId})}">back</a>
 	</div>
 
 
