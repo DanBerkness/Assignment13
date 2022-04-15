@@ -1,5 +1,7 @@
 package com.coderscampus.assignment13.web;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -23,9 +25,16 @@ public class AccountController {
 
 	@PostMapping("/users/{userId}/accounts")
 	public String setUserAccounts(@PathVariable Long userId) {
-		User user = new User();
-		userService.saveUser(user);
-		return "redirect:/users/" + user.getUserId();
+		User user = userService.findById(userId);
+		List<Account> accts = user.getAccounts();
+		Long size = (long) (accts.size() + 1);
+		Account account = accountService.createAccount(size, userId);
+		account.getUsers().add(user);
+		user.getAccounts().add(account);
+		
+		 account = accountService.saveAccount(account);
+		 
+		return "redirect:/users/{userId}/accounts/" + account.getAccountId();
 	}
 
 	@GetMapping("/users/{userId}/accounts/{accountId}")
@@ -40,7 +49,7 @@ public class AccountController {
 	}
 	@PostMapping("/users/{userId}/accounts/{accountId}")
 	public String updateAccount(@PathVariable Long userId, @PathVariable Long accountId, Account account) {
-		System.out.println(account.getAccountId() + " " + account.getAccountName() + account.getUsers());
+		
 		accountService.saveAccount(account);
 		
 

@@ -9,6 +9,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
 import com.coderscampus.assignment13.domain.User;
 import com.coderscampus.assignment13.service.UserService;
 
@@ -17,6 +18,8 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
+	
+	
 
 
 	@GetMapping("/register")
@@ -40,6 +43,8 @@ public class UserController {
 		model.put("users", users);
 		if (users.size() == 1) {
 			model.put("user", users.iterator().next());
+			model.put("account", users.iterator().next().getAccounts());
+			
 		}
 
 		return "users";

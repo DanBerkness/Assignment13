@@ -16,6 +16,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name="accounts")
 public class Account {
+	@Override
+	public String toString() {
+		return "Account [accountId=" + accountId + ", accountName=" + accountName + ", transactions=" + transactions
+				+ ", users=" + users + "]";
+	}
 	private Long accountId;
 	private String accountName;
 	private List<Transaction> transactions = new ArrayList<>();

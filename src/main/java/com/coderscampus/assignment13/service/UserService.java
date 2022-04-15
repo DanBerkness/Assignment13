@@ -69,7 +69,7 @@ public class UserService {
 			accountRepo.save(savings);
 		}
 		else if (address.getUserId() == null) {
-			
+			user.setAddress(address);
 			address.setAddressLine1(user.getAddress().getAddressLine1());
 			address.setAddressLine2(user.getAddress().getAddressLine2());
 			address.setCity(user.getAddress().getCity());

@@ -21,12 +21,7 @@ public class Address {
 	private String country;
 	private String zipCode;
 	
-	@Override
-	public String toString() {
-		return "Address [userId=" + userId + ", user=" + user + ", addressLine1=" + addressLine1 + ", addressLine2="
-				+ addressLine2 + ", city=" + city + ", region=" + region + ", country=" + country + ", zipCode="
-				+ zipCode + "]";
-	}
+	
 	@Id
 	public Long getUserId() {
 		return userId;
